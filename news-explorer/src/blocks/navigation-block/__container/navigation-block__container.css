@@ -6,6 +6,6 @@
   font-size: 18px;
   line-height: 24px;
   color: #FFFFFF;
-  align-items: start;
+  align-items: flex-start;
   /* padding-top: 19px; */
 }
