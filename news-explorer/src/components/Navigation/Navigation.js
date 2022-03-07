@@ -3,7 +3,7 @@ import logoutWhiteImg from "../../images/white-logout.svg";
 import logoutBlackImg from "../../images/Union.svg";
 import React from "react";
 
-function Navigation({ isLoggedIn, handleOpenForm, loginState }) {
+function Navigation({ isLoggedIn, handleOpenForm, loginState, isMobile }) {
   const location = useLocation();
   const history = useHistory();
 
@@ -20,7 +20,7 @@ function Navigation({ isLoggedIn, handleOpenForm, loginState }) {
     <div
       className={`navigation-block__container ${
         !isLoggedIn ? "navigation-block__container_mode_logged-out" : ""
-      } `}
+      } ${isMobile ? "navigation-block__container-mobile" : ""} `}
     >
       <Link
         to="/"

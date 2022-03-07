@@ -59,10 +59,11 @@ function Header({
               openLoginPopup={openLoginPopup}
               openSignupPopup={openSignupPopup}
               handleOpenForm={handleOpenForm}
+              isMobile={isMobile}
             ></Navigation>
           )}
         </div>
-        <MobileNav isMobileNavOpen={isMobileNavOpen} onLogin={onLogin} />
+        <MobileNav handleOpenForm={handleOpenForm} isMobileNavOpen={isMobileNavOpen}  onLogin={onLogin} />
         {location.pathname === "/" && (
           <SearchForm setIsPreloaderOpen={setIsPreloaderOpen} />
         )}
