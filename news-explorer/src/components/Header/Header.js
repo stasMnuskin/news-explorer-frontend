@@ -18,7 +18,7 @@ function Header({
   deviceChange,
   isMobileNavOpen,
   onClose,
-  onLogin
+  onLogin,
 }) {
   const location = useLocation();
 
@@ -63,7 +63,11 @@ function Header({
             ></Navigation>
           )}
         </div>
-        <MobileNav handleOpenForm={handleOpenForm} isMobileNavOpen={isMobileNavOpen}  onLogin={onLogin} />
+        <MobileNav
+          handleOpenForm={handleOpenForm}
+          isMobileNavOpen={isMobileNavOpen}
+          onLogin={onLogin}
+        />
         {location.pathname === "/" && (
           <SearchForm setIsPreloaderOpen={setIsPreloaderOpen} />
         )}

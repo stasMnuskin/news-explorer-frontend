@@ -7,7 +7,7 @@
 
 @media screen and (max-width: 768px) {
   .header__log-button_mode_loggedOut {
-    width: 152px;
+    width: 288px;
     margin-left: 16px;
   }
 }

@@ -17,5 +17,6 @@
 @media screen and (max-width: 768px) {
   .search-block {
     margin-bottom: 32px;
+    margin-top: 50px;
   }
 }

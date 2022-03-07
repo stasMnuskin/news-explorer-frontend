@@ -1,4 +1,4 @@
-.navigation-block__container{
+.navigation-block__container {
   display: flex;
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
@@ -8,4 +8,12 @@
   color: #FFFFFF;
   align-items: flex-start;
   /* padding-top: 19px; */
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-block__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
 }

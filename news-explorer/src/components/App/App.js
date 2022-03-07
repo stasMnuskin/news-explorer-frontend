@@ -11,7 +11,7 @@ import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
   //react states
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [isLoggedAndSaved, setIsLoggedAndSaved] = React.useState(false);
   const [isSearching, setIsSearching] = React.useState(false);
   const [isPreloaderOpen, setIsPreloaderOpen] = React.useState(false);

@@ -20,7 +20,7 @@ function Navigation({ isLoggedIn, handleOpenForm, loginState, isMobile }) {
     <div
       className={`navigation-block__container ${
         !isLoggedIn ? "navigation-block__container_mode_logged-out" : ""
-      } ${isMobile ? "navigation-block__container-mobile" : ""} `}
+      } `}
     >
       <Link
         to="/"

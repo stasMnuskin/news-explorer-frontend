@@ -18,10 +18,9 @@
 
 @media screen and (max-width:768px) {
   .header__log-button {
+    width: 288px;
     font-size: 16px;
     padding-bottom: 8px;
     padding-top: 8px;
   }
-
-  
 }

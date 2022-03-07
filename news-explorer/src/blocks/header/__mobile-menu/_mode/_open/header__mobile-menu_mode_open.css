@@ -1,3 +1,4 @@
 .header__mobile-menu_mode_open {
   background-image: url(../../../../../images/close.svg);
+  z-index: 4;
 }

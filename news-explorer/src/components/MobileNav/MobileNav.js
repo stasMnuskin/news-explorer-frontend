@@ -6,7 +6,7 @@ function MobileNav({
   isLoggedIn,
   handleOpenForm,
   loginState,
-  isMobile
+  isMobile,
 }) {
   return (
     <div
