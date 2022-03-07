@@ -1,0 +1,13 @@
+.header__log-button_mode_loggedOut {
+  width: 176px;
+  margin-left: 42px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__log-button_mode_loggedOut {
+    width: 152px;
+    margin-left: 16px;
+  }
+}

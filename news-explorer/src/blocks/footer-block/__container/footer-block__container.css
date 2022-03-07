@@ -1,0 +1,12 @@
+.footer-block__container {
+  margin: 0 auto;
+  display: flex;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .footer-block__container {
+    margin: 0 16px;
+    align-self: center;
+  }
+}

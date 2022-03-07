@@ -1,0 +1,13 @@
+.about-block {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 768px) {
+  .about-block {
+    flex-direction: column;
+  }  
+}

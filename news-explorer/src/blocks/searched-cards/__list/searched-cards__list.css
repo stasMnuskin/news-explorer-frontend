@@ -1,0 +1,25 @@
+.searched-cards__list {
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 64px;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .searched-cards__list {
+    grid-gap: 8px;
+  }
+}
+
+@media screen and (max-width: 735px) {
+  .searched-cards__list {
+    display: block;
+    /* max-width: 83.4%; */
+    margin-bottom: 21px;
+    /* grid-template-columns: repeat(1, 1fr); */
+  }
+}

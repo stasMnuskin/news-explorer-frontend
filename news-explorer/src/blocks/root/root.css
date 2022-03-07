@@ -1,0 +1,23 @@
+.root {
+  max-width: 1440px;
+  min-width: 320px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  height: auto;
+}
+
+/* .page {
+  
+}
+
+@media screen and (max-width: 670px) {
+  .page {
+    padding-top: 28px;
+    padding-bottom: 36px;
+  }
+} */

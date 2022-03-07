@@ -1,0 +1,9 @@
+.header__mobile-container {
+  width: 100%;
+  padding: 72px 16px 24px;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1a1b22;
+}

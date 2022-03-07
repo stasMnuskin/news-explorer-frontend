@@ -1,0 +1,8 @@
+.preloader-block__image_mode_searching {
+  animation: spin .75s infinite linear;
+}
+  @keyframes spin {
+	  100% {
+		  transform: rotate(360deg);
+	} 
+}

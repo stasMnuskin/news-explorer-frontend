@@ -1,0 +1,36 @@
+.searched-cards__button {
+  margin: 0;
+  margin-bottom: 80px;
+  padding: 20px 0;
+  border-radius: 80px;
+  border: none;
+  width: 288px;
+  height: 64px;
+  align-self: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #1A1B22;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .searched-cards__button {
+    width: 240px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .searched-cards__button {
+    width: 288px;
+    height: 56px;
+    margin-bottom: 24px;
+  }
+}

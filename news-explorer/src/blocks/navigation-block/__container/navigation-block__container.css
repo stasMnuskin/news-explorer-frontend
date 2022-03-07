@@ -1,0 +1,11 @@
+.navigation-block__container{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+  align-items: start;
+  /* padding-top: 19px; */
+}

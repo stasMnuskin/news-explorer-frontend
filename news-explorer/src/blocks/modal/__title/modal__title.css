@@ -1,0 +1,15 @@
+.modal__title {
+  margin-top: 0;
+  margin-bottom: 22px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1A1B22;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__title {
+    margin-bottom: 18px;
+  }
+}

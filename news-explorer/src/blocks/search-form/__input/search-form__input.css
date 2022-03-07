@@ -1,0 +1,28 @@
+.search-form__input {
+  background-color: #FFFFFF;
+  border: 1px solid #D1D2D6;
+  box-sizing: border-box;
+  border-radius: 100px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #B6BCBF;
+  padding-left: 24px;
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+
+@media screen and (max-width: 1024px) {
+  .search-form__input {
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-form__input {
+    margin-bottom: 16px;
+  }
+}

@@ -1,0 +1,6 @@
+.header_mode_news {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

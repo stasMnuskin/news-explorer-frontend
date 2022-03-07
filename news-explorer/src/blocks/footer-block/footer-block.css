@@ -1,0 +1,21 @@
+.footer-block {
+  width: 100%;
+  margin: 0;
+  /* padding: 32px 104px 26px; */
+  display: flex;
+  justify-content: space-between;
+}
+
+/* @media screen and (max-width: 1024px) {
+  .footer-block {
+    padding: 24px 40px;
+  }  
+} */
+
+@media screen and (max-width: 500px) {
+  .footer-block {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    /* padding: 20px 16px; */
+  }  
+}
