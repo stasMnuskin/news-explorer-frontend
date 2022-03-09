@@ -33,7 +33,7 @@ function Header({
             onClick={onHomeClick}
             className={`header__btn-txt ${
               location.pathname === "/saved-news"
-                ? "header__btn-txt_mode_news"
+                ? `header__btn-txt_mode_news${isMobileNavOpen ? "-mobile" : ""}`
                 : ""
             }`}
           >
@@ -53,6 +53,7 @@ function Header({
             />
           ) : (
             <Navigation
+              isMobileNavOpen={isMobileNavOpen}
               isLoggedIn={isLoggedIn}
               isLoggedAndSaved={isLoggedAndSaved}
               loginState={loginState}

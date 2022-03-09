@@ -8,7 +8,7 @@
   color: #1A1B22;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .modal__title {
     margin-bottom: 18px;
   }

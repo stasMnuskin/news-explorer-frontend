@@ -3,7 +3,13 @@ import logoutWhiteImg from "../../images/white-logout.svg";
 import logoutBlackImg from "../../images/Union.svg";
 import React from "react";
 
-function Navigation({ isLoggedIn, handleOpenForm, loginState, isMobile }) {
+function Navigation({
+  isLoggedIn,
+  handleOpenForm,
+  loginState,
+  isMobile,
+  isMobileNavOpen,
+}) {
   const location = useLocation();
   const history = useHistory();
 
@@ -15,11 +21,10 @@ function Navigation({ isLoggedIn, handleOpenForm, loginState, isMobile }) {
       loginState(false);
     }
   }
-
   return (
     <div
-      className={`navigation-block__container ${
-        !isLoggedIn ? "navigation-block__container_mode_logged-out" : ""
+      className={`header__navigation-block-container ${
+        !isLoggedIn ? "header__navigation-block-container_mode_logged-out" : ""
       } `}
     >
       <Link
@@ -27,7 +32,7 @@ function Navigation({ isLoggedIn, handleOpenForm, loginState, isMobile }) {
         className={`header__home-link ${
           location.pathname === "/saved-news"
             ? "header__home-link_mode_news"
-            : ""
+            : "header__home-link_mode_home"
         } ${
           isLoggedIn
             ? "header__home-link_loggedIn"
@@ -37,7 +42,7 @@ function Navigation({ isLoggedIn, handleOpenForm, loginState, isMobile }) {
         Home
       </Link>
       {isLoggedIn && (
-        <div className="nav-list__item">
+        <div className="header__nav-list-item">
           <Link
             to="/saved-news"
             className={`header__nav-link ${
@@ -50,7 +55,11 @@ function Navigation({ isLoggedIn, handleOpenForm, loginState, isMobile }) {
           </Link>
         </div>
       )}
-      <div className="header__log-button__container">
+      <div
+        className={`header__log-button__container ${
+          isMobileNavOpen ? "header__log-button__container-mobile" : ""
+        }`}
+      >
         <button
           onClick={handleClick}
           className={`header__log-button ${

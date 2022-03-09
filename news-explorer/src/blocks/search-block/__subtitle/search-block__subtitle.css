@@ -15,7 +15,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .search-block__subtitle {
     margin-bottom: 112px;
   }

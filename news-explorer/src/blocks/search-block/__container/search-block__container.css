@@ -9,11 +9,11 @@
 
 @media screen and (max-width: 1024px) {
   .search-block__container {
-    width: 452px;
+    width: 448px;
   } 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .search-block__container {
     width: 288px;
   } 

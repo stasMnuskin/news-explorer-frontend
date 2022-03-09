@@ -14,7 +14,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
   .modal__close-button {
     top: 22px;
     right: 16px;

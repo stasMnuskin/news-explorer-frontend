@@ -34,7 +34,7 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .news-card__hover-text {
     top: 8px;
     right: 52px;

@@ -48,12 +48,12 @@ function App() {
 
   React.useEffect(() => {
     handleDeviceMenu();
-  }, []);
+  });
 
   React.useEffect(() => {
-    document.addEventListener("resize", handleDeviceMenu);
+    window.addEventListener("resize", handleDeviceMenu);
 
-    return () => document.removeEventListener("resize", handleDeviceMenu);
+    return () => window.removeEventListener("resize", handleDeviceMenu);
   }, []);
 
   //handlers
@@ -62,7 +62,7 @@ function App() {
   }
 
   function handleDeviceMenu() {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 600) {
       setIsMobile(false);
     } else {
       setIsMobile(true);

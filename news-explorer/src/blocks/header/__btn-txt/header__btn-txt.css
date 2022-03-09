@@ -10,9 +10,10 @@
   z-index: 4;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .header__btn-txt {
     padding-top: 0;
     font-size: 16px;
+    align-self: center;
   }
 }

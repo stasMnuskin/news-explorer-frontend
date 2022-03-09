@@ -11,12 +11,13 @@
 @media screen and (max-width: 1024px) {
   .search-block {
     margin-bottom: 48px;
+    margin-top: 14px;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .search-block {
     margin-bottom: 32px;
-    margin-top: 50px;
+    margin-top: 16px;
   }
 }
