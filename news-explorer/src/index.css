@@ -82,6 +82,7 @@
 @import url(./blocks/modal/_open/modal_open.css);
 @import url(./blocks/modal/__container/modal__container.css);
 @import url(./blocks/modal/__close-button/modal__close-button.css);
+@import url(./blocks/modal/__close-button/_mode/_success/modal__close-button_mode_success.css);
 @import url(./blocks/modal/__form/modal__form.css);
 @import url(./blocks/modal/__title/modal__title.css);
 @import url(./blocks/modal/__subtitle/modal__subtitle.css);

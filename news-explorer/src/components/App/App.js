@@ -126,12 +126,14 @@ function App() {
   return (
     <div className="page__wrapper">
       <Login
+        isInfoTooltipOpen={isInfoTooltipOpen}
         isOpen={isLoginModalOpen}
         onLogin={handleLogin}
         onClose={closeAllPopups}
         onSwitch={handleOpenForm}
       />
       <Signup
+        isSuccess={isInfoTooltipOpen}
         isOpen={isSignupModalOpen}
         onClose={closeAllPopups}
         onSwitch={handleOpenForm}

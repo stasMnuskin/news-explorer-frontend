@@ -14,6 +14,7 @@ export default function PopupWithForm({
   onLogin,
   isLoggedIn,
   onSignup,
+  isSuccess
 }) {
   const [isServerError, setIsServerError] = React.useState(false);
 
@@ -40,7 +41,8 @@ export default function PopupWithForm({
           onClick={onClose}
           aria-label="close"
           type="button"
-          className="modal__close-button"
+          // className="kjhkjhk"
+          className={!isSuccess ? "modal__close-button_mode_success" : "modal__close-button"}
         ></button>
         <form
           onSubmit={onSubmit}

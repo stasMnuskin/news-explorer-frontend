@@ -2,12 +2,7 @@ import React, { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export function Login({
-  isOpen,
-  onClose,
-  onLogin,
-  onSwitch
-}) {
+export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -41,9 +36,10 @@ export function Login({
   function handlePasswordChange(evt) {
     setPassword(evt.target.value);
   }
-  
+
   return (
     <PopupWithForm
+      isSuccess={isSuccess}
       name="login"
       isOpen={isOpen}
       onClose={onClose}

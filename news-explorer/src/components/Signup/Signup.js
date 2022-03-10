@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin }) {
+export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [username, setUsername] = React.useState("");
@@ -61,6 +61,7 @@ export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin }) {
       onSwitch={onSwitch}
       onSignup={onSignup}
       onLogin={onLogin}
+      isSuccess={isSuccess}
     >
       <span className="modal__subtitle">Email</span>
       <input
