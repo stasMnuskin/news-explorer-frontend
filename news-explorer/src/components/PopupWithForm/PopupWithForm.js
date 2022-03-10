@@ -14,13 +14,16 @@ export default function PopupWithForm({
   onLogin,
   isLoggedIn,
   onSignup,
-  isSuccess
+  isSuccess,
+  setIsInfoTooltipOpen,
 }) {
   const [isServerError, setIsServerError] = React.useState(false);
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setIsInfoTooltipOpen(true);
     setIsServerError((error) => !error);
+
     setTimeout(() => {
       setIsServerError(false);
     }, 5000);
@@ -41,8 +44,9 @@ export default function PopupWithForm({
           onClick={onClose}
           aria-label="close"
           type="button"
-          // className="kjhkjhk"
-          className={!isSuccess ? "modal__close-button_mode_success" : "modal__close-button"}
+          className={`modal__close-button ${
+            isSuccess && "modal__close-button_mode_success"
+          }`}
         ></button>
         <form
           onSubmit={onSubmit}

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess }) {
+export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess, setIsInfoTooltipOpen }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -48,6 +48,8 @@ export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess }) {
       link="Sign up"
       onSwitch={onSwitch}
       onLogin={onLogin}
+      setIsInfoTooltipOpen={setIsInfoTooltipOpen}
+
     >
       <span className="modal__subtitle">Email</span>
       <input

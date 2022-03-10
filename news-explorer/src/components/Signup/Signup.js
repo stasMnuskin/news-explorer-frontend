@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess }) {
+export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess, setIsInfoTooltipOpen }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [username, setUsername] = React.useState("");
@@ -52,6 +52,7 @@ export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess
 
   return (
     <PopupWithForm
+      setIsInfoTooltipOpen={setIsInfoTooltipOpen}
       name="signup"
       isOpen={isOpen}
       onClose={onClose}

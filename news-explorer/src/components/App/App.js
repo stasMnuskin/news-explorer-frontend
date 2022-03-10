@@ -47,13 +47,15 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    handleDeviceMenu();
-  });
-
-  React.useEffect(() => {
     window.addEventListener("resize", handleDeviceMenu);
 
-    return () => window.removeEventListener("resize", handleDeviceMenu);
+    return () => {
+      window.removeEventListener("resize", handleDeviceMenu);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    handleDeviceMenu();
   }, []);
 
   //handlers
@@ -133,6 +135,7 @@ function App() {
         onSwitch={handleOpenForm}
       />
       <Signup
+        setIsInfoTooltipOpen={setIsInfoTooltipOpen}
         isSuccess={isInfoTooltipOpen}
         isOpen={isSignupModalOpen}
         onClose={closeAllPopups}
