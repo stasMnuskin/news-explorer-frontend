@@ -11,7 +11,7 @@ import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
   //react states
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLoggedAndSaved, setIsLoggedAndSaved] = React.useState(false);
   const [isSearching, setIsSearching] = React.useState(false);
   const [isPreloaderOpen, setIsPreloaderOpen] = React.useState(false);
@@ -19,7 +19,7 @@ function App() {
   const [isSignupModalOpen, setIsSignupModalOpen] = React.useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = React.useState(false);
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(true);
 
   //closing handlers
   React.useEffect(() => {
