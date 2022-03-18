@@ -3,8 +3,9 @@ import About from "../About/About";
 import { useLocation } from "react-router-dom";
 
 function Main({
+  onSave,
   isPreloaderOpen,
-  searchedArticles,
+  articles,
   setIsSearching,
   isSearching,
   isLoggedIn,
@@ -15,7 +16,8 @@ function Main({
     <>
       {isPreloaderOpen && (
         <Preloader
-          searchedArticles={searchedArticles}
+          onSave={onSave}
+          articles={articles}
           setIsSearching={setIsSearching}
           isSearching={isSearching}
           isLoggedIn={isLoggedIn}

@@ -1,28 +1,23 @@
+/* eslint-disable no-useless-escape */
 import React, { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess, setIsInfoTooltipOpen }) {
+export function Login({
+  onSubmit,
+  isOpen,
+  onClose,
+  onSwitch,
+  isSuccess,
+  setIsInfoTooltipOpen,
+  isServerError,
+}) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  //stage-2 states and functions
+
   const [isEmailError, setIsEmailError] = React.useState(false);
   const [isPasswordError, setIsPasswordError] = React.useState(false);
-
-  function handleTempEmailError() {
-    setIsEmailError((error) => !error);
-    setTimeout(() => {
-      setIsEmailError(false);
-    }, 5000);
-  }
-
-  function handleTempPasswordError() {
-    setIsPasswordError((error) => !error);
-    setTimeout(() => {
-      setIsPasswordError(false);
-    }, 5000);
-  }
 
   useEffect(() => {
     setEmail("");
@@ -30,15 +25,35 @@ export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess, setIsInfo
   }, [isOpen]);
 
   function handleEmailChange(evt) {
-    setEmail(evt.target.value);
+    const {value} = evt.target;
+    const regex = (/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
+
+    if (value === regex){
+      setIsEmailError(true);
+    } else {
+      setIsEmailError(false);
+      setEmail(value);
+    }
   }
 
   function handlePasswordChange(evt) {
-    setPassword(evt.target.value);
+    const {value} = evt.target;
+    if (value) {
+      setPassword(value);
+      setIsPasswordError(false);
+    } else {
+      setIsPasswordError(true);
+    }
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onSubmit(email, password);
   }
 
   return (
     <PopupWithForm
+      isServerError={isServerError}
       isSuccess={isSuccess}
       name="login"
       isOpen={isOpen}
@@ -47,13 +62,15 @@ export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess, setIsInfo
       buttonText="Sign in"
       link="Sign up"
       onSwitch={onSwitch}
-      onLogin={onLogin}
+      onSubmit={handleSubmit}
       setIsInfoTooltipOpen={setIsInfoTooltipOpen}
-
+      // isServerError={isServerError}
+      // email={email}
+      // password={password}
     >
       <span className="modal__subtitle">Email</span>
       <input
-        onClick={handleTempEmailError}
+        // onClick={handleTempEmailError}
         className="modal__input"
         placeholder="Enter email"
         name="email"
@@ -72,7 +89,7 @@ export function Login({ isOpen, onClose, onLogin, onSwitch, isSuccess, setIsInfo
       </span>
       <span className="modal__subtitle">Password</span>
       <input
-        onClick={handleTempPasswordError}
+        // onClick={handleTempPasswordError}
         className="modal__input"
         placeholder="Enter password"
         name="password"

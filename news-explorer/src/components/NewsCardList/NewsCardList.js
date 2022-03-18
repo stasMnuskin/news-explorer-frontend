@@ -1,10 +1,22 @@
 import NewsCard from "../NewsCard/NewsCard";
 import { useLocation } from "react-router-dom";
+import React from "react";
 
-function NewsCardList({ searchedArticles, isLoggedIn }) {
+function NewsCardList({ articles, isLoggedIn, onSave }) {
+
+  const [counter, setCounter] = React.useState(3);
+  const [moreArticles, setMoreArticles] = React.useState(true)
   const location = useLocation();
 
-  function handleButton() {}
+  function handleButton() {
+    console.log("articles.length = ", articles.length);
+    if ((articles.length - counter) <= 3) {
+      setMoreArticles(false);
+      setCounter(articles.length)
+    } else {
+      setCounter(counter + 3)
+    }
+  }
 
   return (
     <div
@@ -18,27 +30,29 @@ function NewsCardList({ searchedArticles, isLoggedIn }) {
         )}
         <ul className="searched-cards__list">
           {location.pathname === "/"
-            ? searchedArticles
-                .slice(0, 3)
-                .map((item) => (
+            ? articles
+                .slice(0, counter)
+                .map((item, i) => (
                   <NewsCard
+                    onSave={onSave}
                     isLoggedIn={isLoggedIn}
-                    key={item._id}
+                    key={i}
                     _id={item._id}
-                    topic={item.topic}
-                    image={item.image}
+                    keyword={item.keyword}
+                    image={item.urlToImage}
                     date={item.date}
                     title={item.title}
-                    text={item.text}
+                    text={item.description}
                     source={item.source}
                   ></NewsCard>
                 ))
-            : searchedArticles.map((item) => (
+            : articles.map((item, i) => (
                 <NewsCard
+                  onSave={onSave}
                   isLoggedIn={isLoggedIn}
-                  key={item._id}
+                  key={i}
                   _id={item._id}
-                  topic={item.topic}
+                  keyword={item.keyword}
                   image={item.image}
                   date={item.date}
                   title={item.title}
@@ -47,8 +61,9 @@ function NewsCardList({ searchedArticles, isLoggedIn }) {
                 ></NewsCard>
               ))}
         </ul>
-        {location.pathname === "/" && (
+        {location.pathname === "/" && moreArticles && (
           <button
+            type="button"
             className="searched-cards__button"
             aria-label="show-more"
             onClick={handleButton}

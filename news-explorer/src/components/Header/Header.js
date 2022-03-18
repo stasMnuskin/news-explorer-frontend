@@ -6,6 +6,10 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SearchForm from "../SearchForm/SearchForm";
 
 function Header({
+  onSearch,
+  currentUser,
+  onSignOut,
+  setToken,
   isLoggedIn,
   onHomeClick,
   isLoggedAndSaved,
@@ -19,6 +23,7 @@ function Header({
   isMobileNavOpen,
   onClose,
   onLogin,
+  articles,
 }) {
   const location = useLocation();
 
@@ -53,6 +58,10 @@ function Header({
             />
           ) : (
             <Navigation
+              currentUser={currentUser}
+              onSignOut={onSignOut}
+              setToken={setToken}
+              onLogin={onLogin}
               isMobileNavOpen={isMobileNavOpen}
               isLoggedIn={isLoggedIn}
               isLoggedAndSaved={isLoggedAndSaved}
@@ -67,12 +76,17 @@ function Header({
         <MobileNav
           handleOpenForm={handleOpenForm}
           isMobileNavOpen={isMobileNavOpen}
-          onLogin={onLogin}
+          openLoginPopup={openLoginPopup}
         />
         {location.pathname === "/" && (
-          <SearchForm setIsPreloaderOpen={setIsPreloaderOpen} />
+          <SearchForm
+            setIsPreloaderOpen={setIsPreloaderOpen}
+            onSearch={onSearch}
+          />
         )}
-        {location.pathname === "/saved-news" && <SavedNewsHeader />}
+        {location.pathname === "/saved-news" && (
+          <SavedNewsHeader currentUser={currentUser} articles={articles} />
+        )}
       </header>
     </>
   );

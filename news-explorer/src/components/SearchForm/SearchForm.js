@@ -1,9 +1,21 @@
-function SearchForm({setIsPreloaderOpen}) {
+import React from "react";
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    // stage-3 code
-  };
+function SearchForm({ onSearch }) {
+  const [keyword, setKeyword] = React.useState("");
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onSearch(keyword);
+  }
+
+  function handleChange(evt) {
+    // console.log("evt.target.value = ", evt.target.value);
+    // const e = evt.currentTarget;
+    // const r1 = e.closest("search-form__input");
+
+    // console.log("r1 = ", r1);
+    setKeyword(evt.target.value);
+  }
 
   return (
     <div className="search-block">
@@ -15,12 +27,20 @@ function SearchForm({setIsPreloaderOpen}) {
         </h3>
         <form className="search-form" onSubmit={handleSubmit}>
           <input
+            value={keyword}
+            onChange={handleChange}
             className="search-form__input"
             placeholder="Enter topic"
             type="text"
             required
           ></input>
-          <button className="search-form__button" type="button" onClick={setIsPreloaderOpen} >Search</button>
+          <button
+            // onClick={setIsPreloaderOpen}
+            className="search-form__button"
+            type="submit"
+          >
+            Search
+          </button>
         </form>
       </div>
     </div>

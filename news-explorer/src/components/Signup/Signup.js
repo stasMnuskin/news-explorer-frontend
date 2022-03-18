@@ -1,7 +1,8 @@
+/* eslint-disable no-useless-escape */
 import React, { useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess, setIsInfoTooltipOpen }) {
+export function Signup({ isOpen, onClose, onSwitch, onSubmit, isSuccess, isServerError }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [username, setUsername] = React.useState("");
@@ -11,27 +12,6 @@ export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess
   const [isPasswordError, setIsPasswordError] = React.useState(false);
   const [isUsernameError, setIsUsernameError] = React.useState(false);
 
-  function handleTempEmailError() {
-    setIsEmailError((error) => !error);
-    setTimeout(() => {
-      setIsEmailError(false);
-    }, 5000);
-  }
-
-  function handleTempPasswordError() {
-    setIsPasswordError((error) => !error);
-    setTimeout(() => {
-      setIsPasswordError(false);
-    }, 5000);
-  }
-
-  function handleTempUsernameError() {
-    setIsUsernameError((error) => !error);
-    setTimeout(() => {
-      setIsUsernameError(false);
-    }, 5000);
-  }
-
   useEffect(() => {
     setEmail("");
     setPassword("");
@@ -39,20 +19,44 @@ export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess
   }, [isOpen]);
 
   function handleEmailChange(evt) {
-    setEmail(evt.target.value);
+    const {value} = evt.target;
+    const regex = (/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
+
+    if (value === regex){
+      setIsEmailError(true);
+    } else {
+      setIsEmailError(false);
+      setEmail(value);
+    }
   }
 
   function handlePasswordChange(evt) {
-    setPassword(evt.target.value);
+    const {value} = evt.target;
+    if (value) {
+      setPassword(value);
+      setIsPasswordError(false);
+    } else {
+      setIsPasswordError(true);
+    }
   }
 
   function handleUserNameChange(evt) {
-    setUsername(evt.target.value);
+    const {value} = evt.target;
+    if (value) {
+      setUsername(value);
+      setIsUsernameError(false);
+    } else {
+      setIsUsernameError(true);
+    }
+  }
+
+  function handleSignup(evt) {
+    evt.preventDefault();
+    onSubmit(email, password, username);
   }
 
   return (
     <PopupWithForm
-      setIsInfoTooltipOpen={setIsInfoTooltipOpen}
       name="signup"
       isOpen={isOpen}
       onClose={onClose}
@@ -60,13 +64,13 @@ export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess
       buttonText="Sign up"
       link="Sign in"
       onSwitch={onSwitch}
-      onSignup={onSignup}
-      onLogin={onLogin}
+      onSubmit={handleSignup}
       isSuccess={isSuccess}
+      isServerError={isServerError}
     >
       <span className="modal__subtitle">Email</span>
       <input
-        onClick={handleTempEmailError}
+        // onClick={handleTempEmailError}
         className="modal__input"
         placeholder="Enter email"
         name="email"
@@ -85,7 +89,7 @@ export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess
       </span>
       <span className="modal__subtitle">Password</span>
       <input
-        onClick={handleTempPasswordError}
+        // onClick={handleTempPasswordError}
         className="modal__input"
         placeholder="Enter password"
         name="password"
@@ -104,7 +108,7 @@ export function Signup({ isOpen, onClose, onSwitch, onSignup, onLogin, isSuccess
       </span>
       <span className="modal__subtitle">Username</span>
       <input
-        onClick={handleTempUsernameError}
+        // onClick={handleTempUsernameError}
         className="modal__input"
         placeholder="Enter your username"
         name="user-name"

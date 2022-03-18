@@ -4,11 +4,15 @@ import logoutBlackImg from "../../images/Union.svg";
 import React from "react";
 
 function Navigation({
+  onSignOut,
+  setToken,
   isLoggedIn,
+  openLoginPopup,
   handleOpenForm,
   loginState,
   isMobile,
   isMobileNavOpen,
+  currentUser,
 }) {
   const location = useLocation();
   const history = useHistory();
@@ -17,6 +21,9 @@ function Navigation({
     if (!isLoggedIn) {
       handleOpenForm();
     } else {
+      onSignOut();
+      localStorage.removeItem("jwt")
+      setToken(localStorage.getItem("jwt"));
       history.push("/");
       loginState(false);
     }
@@ -72,7 +79,7 @@ function Navigation({
               : "header__log-button_mode_loggedOut"
           }`}
         >
-          {isLoggedIn ? "User" : "Sign in"}
+          {isLoggedIn ? currentUser.name : "Sign in"}
           {isLoggedIn && (
             <img
               className="header__logout-img"

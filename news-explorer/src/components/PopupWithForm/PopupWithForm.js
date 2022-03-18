@@ -11,31 +11,9 @@ export default function PopupWithForm({
   buttonText,
   link,
   onSwitch,
-  onLogin,
-  isLoggedIn,
-  onSignup,
   isSuccess,
-  setIsInfoTooltipOpen,
+  isServerError,
 }) {
-  const [isServerError, setIsServerError] = React.useState(false);
-
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    setIsInfoTooltipOpen(true);
-    setIsServerError((error) => !error);
-
-    setTimeout(() => {
-      setIsServerError(false);
-    }, 5000);
-
-    if (!isLoggedIn) {
-      onLogin();
-
-      // onClose();
-    } else {
-      onSignup();
-    }
-  }
 
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
@@ -64,7 +42,7 @@ export default function PopupWithForm({
             ""
           )}
           <button
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
             type="submit"
             className={`modal__submit-button ${
               isServerError ? "modal__submit-button_active" : ""

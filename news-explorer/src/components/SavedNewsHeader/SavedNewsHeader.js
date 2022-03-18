@@ -1,11 +1,11 @@
-import articles from "../../data/articles";
+// import articles from "../../data/articles";
 
-function SavedNewsHeader() {
+function SavedNewsHeader({currentUser, articles}) {
   return (
     <section className="saved-news-header">
       <span className="saved-news-header__description">Saved articles</span>
       <h1 className="saved-news-header__title">
-        User, you have {articles.length} saved articles
+        {currentUser.name}, you have {articles.length} saved articles
       </h1>
       <p className="saved-news-header__text">
         By keywords:

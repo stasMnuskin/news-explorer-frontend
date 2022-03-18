@@ -1,11 +1,11 @@
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-function SavedNews({ isLoggedIn, searchedArticles }) {
+function SavedNews({ isLoggedIn, articles }) {
   return (
     <>
       <NewsCardList
         isLoggedIn={isLoggedIn}
-        searchedArticles={searchedArticles}
+        articles={articles}
       ></NewsCardList>
     </>
   );

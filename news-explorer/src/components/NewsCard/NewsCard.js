@@ -2,9 +2,10 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 function NewsCard({
+  onSave,
   isLoggedIn,
   _id,
-  topic,
+  keyword,
   image,
   date,
   title,
@@ -15,9 +16,7 @@ function NewsCard({
   const [isSaved, setIsSaved] = React.useState(false);
 
   function handleClick() {
-    if (isLoggedIn) {
-      setIsSaved((saved) => !saved);
-    }
+    onSave();
   }
 
   return (
@@ -29,22 +28,34 @@ function NewsCard({
           onClick={handleClick}
           className={`news-card__button ${
             location.pathname === "/"
-              ? (isLoggedIn && isSaved) ? "news-card__button_mode_save-loggedIn" : "news-card__button_mode_save"
+              ? isLoggedIn && isSaved
+                ? "news-card__button_mode_save-loggedIn"
+                : "news-card__button_mode_save"
               : "news-card__button_mode_news"
           }`}
         ></button>
         {!isLoggedIn && (
           <span className="news-card__hover-text">
-            {location.pathname === "/" ? "Sign in to save articles" : "Remove from saved"}
+            {location.pathname === "/"
+              ? "Sign in to save articles"
+              : "Remove from saved"}
           </span>
         )}
-        {location.pathname === "/saved-news" && <span className="news-card__topic">{topic}</span>}
+        {location.pathname === "/saved-news" && (
+          <span className="news-card__topic">{keyword}</span>
+        )}
         <img className="news-card__image" src={image} alt={title}></img>
         <div className="news-card__info">
-          <span className="news-card__date">{date}</span>
+          <span className="news-card__date">
+            {new Date().toLocaleString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </span>
           <h3 className="news-card__title">{title}</h3>
           <p className="news-card__text">{text}</p>
-          <span className="news-card__source">{source}</span>
+          <span className="news-card__source">{source.name}</span>
         </div>
       </div>
     </li>
