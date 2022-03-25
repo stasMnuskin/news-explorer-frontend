@@ -12,10 +12,7 @@ function NewsCard({
 }) {
   const location = useLocation();
 
-  const {
-    title,
-    url = searchedArticle.link,
-  } = searchedArticle;
+  const { title, url = searchedArticle.link } = searchedArticle;
 
   let isSaved = false;
 
@@ -59,8 +56,10 @@ function NewsCard({
               : saveArticle
           }
           className={`news-card__button ${
-            location.pathname === "/"
+            location.pathname === "/" && !isSaved
               ? "news-card__button_mode_save"
+              : location.pathname === "/" && isSaved
+              ? "news-card__button_mode_save-loggedIn"
               : "news-card__button_mode_news"
           }`}
         ></button>
