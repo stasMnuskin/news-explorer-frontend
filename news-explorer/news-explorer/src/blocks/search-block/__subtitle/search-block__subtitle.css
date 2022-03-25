@@ -1,0 +1,22 @@
+.search-block__subtitle {
+  margin-top: 0;
+  margin-bottom: 88px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+  width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .search-block__subtitle {
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search-block__subtitle {
+    margin-bottom: 112px;
+  }
+}

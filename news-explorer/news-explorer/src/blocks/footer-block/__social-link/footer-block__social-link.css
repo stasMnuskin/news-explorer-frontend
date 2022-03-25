@@ -1,0 +1,14 @@
+.footer-block__social-link {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  background-position: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer-block__social-link {
+    width: 20px;
+    height: 20px;
+  }  
+}

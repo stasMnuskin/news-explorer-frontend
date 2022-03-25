@@ -1,0 +1,9 @@
+.preloader-block__not-found-title {
+  font-family: 'Roboto-Slab', sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  color: #1A1B22;
+  margin: 31.5px auto 16px;
+}

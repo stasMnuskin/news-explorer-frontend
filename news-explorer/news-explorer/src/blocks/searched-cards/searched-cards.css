@@ -1,0 +1,17 @@
+.searched-cards {
+  width: calc(100% - 104px * 2);
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .searched-cards {
+    width: calc(100% - 40px * 2);
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .searched-cards {
+    width: calc(100% - 16px * 2);
+  }
+}

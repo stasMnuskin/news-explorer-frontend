@@ -1,0 +1,19 @@
+.header__navigation-block-container {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+  align-items: flex-start;
+  /* padding-top: 19px; */
+}
+
+@media screen and (max-width: 600px) {
+  .header__navigation-block-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+}

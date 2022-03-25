@@ -1,0 +1,27 @@
+.news-card__source {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto-Slab', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #B6BCBF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 18px;
+  height: 20px;
+}
+
+@media screen and (max-width: 1280px) {
+  .news-card__source {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 735px) {
+  .news-card__source {
+    padding-top: 30px;
+  }
+}

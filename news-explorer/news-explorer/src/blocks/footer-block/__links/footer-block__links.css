@@ -1,0 +1,27 @@
+.footer-block__links {
+  display: flex;
+  /* padding-top: 30px;
+  padding-bottom: 28px;
+  padding-right: 106px; */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #1A1B22;
+}
+
+/* @media screen and (max-width: 1024px) {
+  .footer-block__links {
+    padding-top: 21px;
+    padding-bottom: 21px;
+    padding-right: 41px;
+  }
+} */
+
+@media screen and (max-width: 680px) {
+  .footer-block__links {
+    padding: 0;
+    flex-direction: column;
+  }
+}

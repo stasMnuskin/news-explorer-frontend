@@ -1,0 +1,11 @@
+.header {
+  /* background-color: brown; */
+  width: 100%;
+    /* padding-bottom: 55px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: url(../../images/header.png) center center no-repeat;
+  z-index: 1;
+  /* padding-top: 19px; */
+}
