@@ -1,8 +1,0 @@
-.news-card__button_mode_save {
-  /* background-image: url(../../../images/Rectangle.svg); */
-  background-image: url(../../../../../images/bookmark1.svg);
-}
-
-.news-card__button_mode_save:hover {
-  background-image: url(../../../../../images/bookmark.svg);
-}
