@@ -2,19 +2,24 @@ import NewsCard from "../NewsCard/NewsCard";
 import { useLocation } from "react-router-dom";
 import React from "react";
 
-function NewsCardList({ articles, isLoggedIn, onSave }) {
-
+function NewsCardList({
+  likedArticles,
+  articles,
+  isLoggedIn,
+  onSave,
+  onDelete,
+}) {
+  
   const [counter, setCounter] = React.useState(3);
-  const [moreArticles, setMoreArticles] = React.useState(true)
+  const [moreArticles, setMoreArticles] = React.useState(true);
   const location = useLocation();
 
   function handleButton() {
-    console.log("articles.length = ", articles.length);
-    if ((articles.length - counter) <= 3) {
+    if (articles.length - counter <= 3) {
       setMoreArticles(false);
-      setCounter(articles.length)
+      setCounter(articles.length);
     } else {
-      setCounter(counter + 3)
+      setCounter(counter + 3);
     }
   }
 
@@ -29,37 +34,32 @@ function NewsCardList({ articles, isLoggedIn, onSave }) {
           <h2 className="searched-cards__title">Search results</h2>
         )}
         <ul className="searched-cards__list">
-          {location.pathname === "/"
-            ? articles
-                .slice(0, counter)
-                .map((item, i) => (
-                  <NewsCard
-                    onSave={onSave}
-                    isLoggedIn={isLoggedIn}
-                    key={i}
-                    _id={item._id}
-                    keyword={item.keyword}
-                    image={item.urlToImage}
-                    date={item.date}
-                    title={item.title}
-                    text={item.description}
-                    source={item.source}
-                  ></NewsCard>
-                ))
-            : articles.map((item, i) => (
+          {location.pathname === "/" &&
+            articles
+              .slice(0, counter)
+              .map((item, i) => (
                 <NewsCard
+                  likedArticles={likedArticles}
+                  articles={articles}
                   onSave={onSave}
+                  onDelete={onDelete}
                   isLoggedIn={isLoggedIn}
                   key={i}
-                  _id={item._id}
-                  keyword={item.keyword}
-                  image={item.image}
-                  date={item.date}
-                  title={item.title}
-                  text={item.text}
-                  source={item.source}
+                  searchedArticle={item}
                 ></NewsCard>
               ))}
+          {location.pathname === "/saved-news" &&
+            likedArticles.map((item, i) => (
+              <NewsCard
+                likedArticles={likedArticles}
+                articles={articles}
+                onSave={onSave}
+                onDelete={onDelete}
+                isLoggedIn={isLoggedIn}
+                key={i}
+                searchedArticle={item}
+              ></NewsCard>
+            ))}
         </ul>
         {location.pathname === "/" && moreArticles && (
           <button

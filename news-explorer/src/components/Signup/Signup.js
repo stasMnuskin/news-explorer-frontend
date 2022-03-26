@@ -1,62 +1,28 @@
 /* eslint-disable no-useless-escape */
-import React, { useEffect } from "react";
+import React from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import { useFormWithValidation } from "../formValidation/formValidation";
 
-export function Signup({ isOpen, onClose, onSwitch, onSubmit, isSuccess, isServerError }) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [username, setUsername] = React.useState("");
-
-  //stage-2 states and functions
-  const [isEmailError, setIsEmailError] = React.useState(false);
-  const [isPasswordError, setIsPasswordError] = React.useState(false);
-  const [isUsernameError, setIsUsernameError] = React.useState(false);
-
-  useEffect(() => {
-    setEmail("");
-    setPassword("");
-    setUsername("");
-  }, [isOpen]);
-
-  function handleEmailChange(evt) {
-    const {value} = evt.target;
-    const regex = (/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
-
-    if (value === regex){
-      setIsEmailError(true);
-    } else {
-      setIsEmailError(false);
-      setEmail(value);
-    }
-  }
-
-  function handlePasswordChange(evt) {
-    const {value} = evt.target;
-    if (value) {
-      setPassword(value);
-      setIsPasswordError(false);
-    } else {
-      setIsPasswordError(true);
-    }
-  }
-
-  function handleUserNameChange(evt) {
-    const {value} = evt.target;
-    if (value) {
-      setUsername(value);
-      setIsUsernameError(false);
-    } else {
-      setIsUsernameError(true);
-    }
-  }
+export function Signup({
+  isOpen,
+  onClose,
+  onSwitch,
+  onSubmit,
+  isSuccess,
+  isServerError,
+}) {
+  // states and functions
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
 
   function handleSignup(evt) {
     evt.preventDefault();
-    onSubmit(email, password, username);
+    onSubmit(values, resetForm);
   }
 
   return (
     <PopupWithForm
+      isValid={isValid}
       name="signup"
       isOpen={isOpen}
       onClose={onClose}
@@ -70,57 +36,51 @@ export function Signup({ isOpen, onClose, onSwitch, onSubmit, isSuccess, isServe
     >
       <span className="modal__subtitle">Email</span>
       <input
-        // onClick={handleTempEmailError}
         className="modal__input"
         placeholder="Enter email"
         name="email"
         type="email"
-        value={email}
-        onChange={handleEmailChange}
+        value={values.email || ""}
+        onChange={handleChange}
         noValidate
         required
       ></input>
       <span
         className={`modal__error ${
-          isEmailError ? "modal__error_mode_active" : ""
+          errors.email ? "modal__error_mode_active" : ""
         }`}
       >
         Invalid email address
       </span>
       <span className="modal__subtitle">Password</span>
       <input
-        // onClick={handleTempPasswordError}
         className="modal__input"
         placeholder="Enter password"
         name="password"
         type="password"
-        value={password}
-        onChange={handlePasswordChange}
-        noValidate
+        value={values.password || ""}
+        onChange={handleChange}
         required
       ></input>
       <span
         className={`modal__error ${
-          isPasswordError ? "modal__error_mode_active" : ""
+          errors.password ? "modal__error_mode_active" : ""
         }`}
       >
         Invalid password
       </span>
       <span className="modal__subtitle">Username</span>
       <input
-        // onClick={handleTempUsernameError}
         className="modal__input"
         placeholder="Enter your username"
-        name="user-name"
-        type="user-name"
-        value={username}
-        onChange={handleUserNameChange}
-        noValidate
+        name="name"
+        value={values.name || ""}
+        onChange={handleChange}
         required
       ></input>
       <span
         className={`modal__error ${
-          isUsernameError ? "modal__error_mode_active" : ""
+          errors.name ? "modal__error_mode_active" : ""
         }`}
       >
         Invalid username

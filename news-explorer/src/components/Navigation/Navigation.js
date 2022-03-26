@@ -9,7 +9,6 @@ function Navigation({
   isLoggedIn,
   openLoginPopup,
   handleOpenForm,
-  loginState,
   isMobile,
   isMobileNavOpen,
   currentUser,
@@ -22,10 +21,9 @@ function Navigation({
       handleOpenForm();
     } else {
       onSignOut();
-      localStorage.removeItem("jwt")
+      localStorage.removeItem("jwt");
       setToken(localStorage.getItem("jwt"));
       history.push("/");
-      loginState(false);
     }
   }
   return (

@@ -58,6 +58,7 @@
 @import url(./blocks/news-card/__text/news-card__text.css);
 @import url(./blocks/news-card/__source/news-card__source.css);
 @import url(./blocks/news-card/__topic/news-card__topic.css);
+@import url(./blocks/news-card/__url/news-card__url.css);
 @import url(./blocks/searched-cards/__button/searched-cards__button.css);
 @import url(./blocks/about-block/about-block.css);
 @import url(./blocks/about-block/__image/about-block__image.css);

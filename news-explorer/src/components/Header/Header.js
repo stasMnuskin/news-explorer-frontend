@@ -6,6 +6,7 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SearchForm from "../SearchForm/SearchForm";
 
 function Header({
+  likedArticles,
   onSearch,
   currentUser,
   onSignOut,
@@ -13,7 +14,6 @@ function Header({
   isLoggedIn,
   onHomeClick,
   isLoggedAndSaved,
-  loginState,
   setIsPreloaderOpen,
   openLoginPopup,
   openSignupPopup,
@@ -65,7 +65,6 @@ function Header({
               isMobileNavOpen={isMobileNavOpen}
               isLoggedIn={isLoggedIn}
               isLoggedAndSaved={isLoggedAndSaved}
-              loginState={loginState}
               openLoginPopup={openLoginPopup}
               openSignupPopup={openSignupPopup}
               handleOpenForm={handleOpenForm}
@@ -85,7 +84,11 @@ function Header({
           />
         )}
         {location.pathname === "/saved-news" && (
-          <SavedNewsHeader currentUser={currentUser} articles={articles} />
+          <SavedNewsHeader
+            likedArticles={likedArticles}
+            currentUser={currentUser}
+            articles={articles}
+          />
         )}
       </header>
     </>

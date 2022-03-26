@@ -1,8 +1,13 @@
 import NewsCardList from "../NewsCardList/NewsCardList";
-// import preloaderImg from "../../images/elipse.svg";
-// import notFoundImg from "../../images/not-found_v1.svg";
 
-function Preloader({ articles, isSearching, isLoggedIn, onSave }) {
+function Preloader({
+  likedArticles,
+  articles,
+  isSearching,
+  isLoggedIn,
+  onSave,
+  onDelete,
+}) {
   return (
     <section className="preloader-block">
       {isSearching && (
@@ -22,9 +27,11 @@ function Preloader({ articles, isSearching, isLoggedIn, onSave }) {
           </div>
         ) : (
           <NewsCardList
+            onDelete={onDelete}
             onSave={onSave}
             isLoggedIn={isLoggedIn}
             articles={articles}
+            likedArticles={likedArticles}
           ></NewsCardList>
         )
       ) : (

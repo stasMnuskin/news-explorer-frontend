@@ -31,6 +31,32 @@ function App() {
   const [isServerError, setIsServerError] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
   const [keyword, setKeyword] = React.useState("");
+  const [likedArticles, setLikedArticles] = React.useState([]);
+
+  //update headers
+  React.useEffect(() => {
+    const newToken = localStorage.getItem("jwt");
+    mainApi._headers = {
+      authorization: `Bearer ${newToken}`,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    };
+  }, [token]);
+
+  //user info
+  React.useEffect(() => {
+    if (token) {
+      mainApi.getUserInfo().then((res) => {
+        if (res) {
+          setCurrentUser({
+            name: res.data.name,
+            _id: res.data._id,
+          });
+          setIsLoggedIn(true);
+        }
+      });
+    }
+  }, [token]);
 
   React.useEffect(() => {
     if (localStorage.getItem("keyword")) {
@@ -47,43 +73,19 @@ function App() {
     }
   }, []);
 
-  //get articles from main api
+  //get liked articles from main api
   React.useEffect(() => {
     if (token) {
       mainApi
         .getArticles()
         .then((res) => {
-          setArticles(res.data);
+          if (res) {
+            setLikedArticles(res.data);
+          }
         })
         .catch((err) => {
           console.log(err);
         });
-    }
-  }, [token]);
-
-  //update headers
-  React.useEffect(() => {
-    if (token) {
-      mainApi._headers = {
-        authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      };
-    }
-  }, [token]);
-
-  //user info
-  React.useEffect(() => {
-    if (token) {
-      mainApi.getUserInfo().then((res) => {
-        if (res) {
-          setCurrentUser({
-            name: res.data.name,
-            _id: res.data._id,
-          });
-          setIsLoggedIn(true);
-        }
-      });
     }
   }, [token]);
 
@@ -141,13 +143,13 @@ function App() {
     setIsLoggedAndSaved(false);
   }
 
-  function handleLoginState() {
-    setIsLoggedIn((loggedIn) => !loggedIn);
-  }
+  // function handleLoginState() {
+  //   setIsLoggedIn((loggedIn) => !loggedIn);
+  // }
 
-  function handleLogin(email, password) {
+  function handleLogin(values, action) {
     mainApi
-      .logIn(email, password)
+      .logIn(values)
       .then((res) => {
         if (res) {
           localStorage.setItem("jwt", res.data);
@@ -155,6 +157,7 @@ function App() {
           setIsLoggedIn(true);
           setIsServerError(false);
           closeAllPopups();
+          action();
         }
       })
       .catch((err) => {
@@ -162,8 +165,6 @@ function App() {
         setIsLoggedIn(false);
         setIsServerError(true);
       });
-    // setIsLoginModalOpen(true);
-    // setIsInfoTooltipOpen(false);
   }
 
   function handleOpenLoginPopup() {
@@ -171,10 +172,11 @@ function App() {
     setIsLoginModalOpen(true);
   }
 
-  function handleOpenSignupPopup(email, password, name) {
+  function handleOpenSignupPopup(values, action) {
     mainApi
-      .register(email, password, name)
+      .register(values)
       .then((res) => {
+        action();
         setIsSignupModalOpen(false);
         setIsInfoTooltipOpen(true);
         setCurrentUser({ name: res.name, _id: res._id });
@@ -210,10 +212,13 @@ function App() {
   }
 
   function handleSignOut() {
-    setCurrentUser({
-      name: "",
-      _id: "",
-    });
+    // setCurrentUser({
+    //   name: "",
+    //   _id: "",
+    // });
+    // closeAllPopups();
+    setIsLoggedIn(false);
+    localStorage.removeItem("jwt");
   }
 
   function handleSearch(key) {
@@ -229,7 +234,6 @@ function App() {
         } else {
           localStorage.removeItem("articles");
         }
-        // setIsPreloaderOpen(false);
         setIsSearching(false);
       })
       .catch((err) => {
@@ -239,34 +243,41 @@ function App() {
       });
   }
 
-  function handleSave(article, isSaved) {
+  function handleSaveArticle(article) {
     isLoggedIn
       ? mainApi
-          .toggleAction(article, isSaved, keyword)
+          .saveArticle(article, keyword)
           .then((res) => {
-            // console.log(res);
-            if (!res.message) {
+            if (res.data) {
+              console.log("res.data = ", res.data);
               const articleToSave = {
-                keyword: res.keyword,
-                _id: res._id,
-                title: res.title,
-                description: res.text,
-                source: { name: res.source },
-                publishedAt: res.date,
-                link: res.link,
-                urlToImage: res.image,
+                keyword: res.data.keyword,
+                _id: res.data._id,
+                title: res.data.title,
+                description: res.data.text,
+                source: res.data.source.name,
+                publishedAt: res.data.date,
+                link: res.data.link,
+                urlToImage: res.data.image,
               };
-              setArticles([...articles, articleToSave]);
-            } else {
-              setArticles((cards) =>
-                cards.filter((card) => card._id === article._id)
-              );
+              setLikedArticles([...likedArticles, articleToSave]);
             }
           })
           .catch((err) => {
             console.log(err);
           })
       : setIsLoginModalOpen(true);
+  }
+
+  function handleDelete(articleId) {
+    isLoggedIn
+      ? mainApi.deleteArticle(articleId).then((res) => {
+          // console.log("delete res = ", res);
+          setLikedArticles(
+            likedArticles.filter((item) => item._id !== articleId)
+          );
+        })
+      : console.log("Cant Delete The Card");
   }
 
   return (
@@ -299,7 +310,6 @@ function App() {
           isMobile={isMobile}
           deviceChange={handleMobileMenu}
           isMobileNavOpen={isMobileNavOpen}
-          loginState={handleLoginState}
           isLoggedIn={isLoggedIn}
           onHomeClick={handleHomeClick}
           isLoggedAndSaved={isLoggedAndSaved}
@@ -312,17 +322,26 @@ function App() {
           onLogin={handleLogin}
           setToken={setToken}
           articles={articles}
+          likedArticles={likedArticles}
         ></Header>
         <Switch>
           <ProtectedRoute exact path="/saved-news" isLoggedIn={isLoggedIn}>
-            <SavedNews isLoggedIn={isLoggedIn} articles={articles}></SavedNews>
+            <SavedNews
+              isLoggedIn={isLoggedIn}
+              articles={articles}
+              likedArticles={likedArticles}
+              onSave={handleSaveArticle}
+              onDelete={handleDelete}
+            ></SavedNews>
           </ProtectedRoute>
           <Route path="/">
             <Main
-              onSave={handleSave}
+              onDelete={handleDelete}
+              onSave={handleSaveArticle}
               isLoggedIn={isLoggedIn}
               isPreloaderOpen={isPreloaderOpen}
               articles={articles}
+              likedArticles={likedArticles}
               setIsSearching={setIsSearching}
               isSearching={isSearching}
             ></Main>

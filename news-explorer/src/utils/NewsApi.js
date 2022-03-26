@@ -11,8 +11,7 @@ class NewsApi {
     this.month = this.lastDate.getMonth() + 1;
     this.year = this.lastDate.getFullYear();
 
-    this.startDate = this.year + '/' + this.month + '/' + this.day
-    // this.startDate = this.now.setDate(this.now.getDate() - 7)
+    this.startDate = this.year + "/" + this.month + "/" + this.day;
   }
   costumeFetch(url, headers) {
     return fetch(url, headers).then((res) => {
@@ -31,7 +30,7 @@ class NewsApi {
 
 const newsApi = new NewsApi({
   apiKey: "66672a82201f4feca0324014dd30c0db",
-  baseUrl: "https://nomoreparties.co/news/v2/everything",
+  baseUrl: "https://newsapi.org/v2/everything",
   headers: {
     authorization: `Bearer ${localStorage.jwt}`,
     "Content-Type": "application/json",

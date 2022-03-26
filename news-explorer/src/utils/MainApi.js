@@ -1,5 +1,5 @@
-const mainUrl = "http://localhost:3000";
-// const mainUrl = "https://api.stasnews.students.nomoreparties.sbs";
+// const mainUrl = "http://localhost:3000";
+const mainUrl = "https://api.stasnews.students.nomoreparties.sbs";
 
 class MainApi {
   constructor(baseUrl, headers) {
@@ -17,7 +17,7 @@ class MainApi {
     });
   }
 
-  logIn(email, password) {
+  logIn({ email, password }) {
     return this.costumeFetch(`${this._baseUrl}/signin`, {
       body: JSON.stringify({ email, password }),
       headers: {
@@ -29,7 +29,6 @@ class MainApi {
     })
       .then((user) => {
         if (user) {
-          // console.log("user = ", user);
           return user;
         } else {
           throw new Error("User Not Found!");
@@ -40,7 +39,7 @@ class MainApi {
       });
   }
 
-  register(email, password, name) {
+  register({ email, password, name }) {
     return this.costumeFetch(`${this._baseUrl}/signup`, {
       headers: {
         "Content-Type": "application/json",
@@ -97,14 +96,6 @@ class MainApi {
       headers: this._headers,
       method: "DELETE",
     });
-  }
-
-  toggleAction(article, isSaved, key) {
-    if (isSaved) {
-      return this.deleteArticle(article._id);
-    } else {
-      return this.saveArticle(article, key);
-    }
   }
 }
 

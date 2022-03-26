@@ -9,11 +9,6 @@ function SearchForm({ onSearch }) {
   }
 
   function handleChange(evt) {
-    // console.log("evt.target.value = ", evt.target.value);
-    // const e = evt.currentTarget;
-    // const r1 = e.closest("search-form__input");
-
-    // console.log("r1 = ", r1);
     setKeyword(evt.target.value);
   }
 
