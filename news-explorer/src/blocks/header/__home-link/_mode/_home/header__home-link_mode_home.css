@@ -1,0 +1,18 @@
+.header__home-link_mode_home {
+  border-bottom: 3px solid #FFFFFF;
+}
+
+@media screen and (max-width: 1024px) {
+  .header__home-link_mode_home {
+    margin-bottom: -25px;
+    padding-bottom: 21px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header__home-link_mode_home {
+    margin-bottom: -4px;
+    padding-bottom: 21px;
+    border: none;
+  }
+}

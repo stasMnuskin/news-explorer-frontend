@@ -1,0 +1,6 @@
+.preloader-block_mode_open {
+  width: 356px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
