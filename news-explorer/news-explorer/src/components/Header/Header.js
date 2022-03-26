@@ -14,7 +14,6 @@ function Header({
   isLoggedIn,
   onHomeClick,
   isLoggedAndSaved,
-  loginState,
   setIsPreloaderOpen,
   openLoginPopup,
   openSignupPopup,
@@ -66,7 +65,6 @@ function Header({
               isMobileNavOpen={isMobileNavOpen}
               isLoggedIn={isLoggedIn}
               isLoggedAndSaved={isLoggedAndSaved}
-              loginState={loginState}
               openLoginPopup={openLoginPopup}
               openSignupPopup={openSignupPopup}
               handleOpenForm={handleOpenForm}

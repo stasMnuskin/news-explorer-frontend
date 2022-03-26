@@ -76,7 +76,6 @@ class MainApi {
   }
 
   saveArticle(article, key) {
-    console.log("article = ", article);
     return this.costumeFetch(`${this._baseUrl}/articles`, {
       method: "POST",
       headers: this._headers,

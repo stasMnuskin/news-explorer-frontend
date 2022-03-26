@@ -13,7 +13,6 @@ import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import newsApi from "../../utils/NewsApi";
 
 function App() {
-
   //react states
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLoggedAndSaved, setIsLoggedAndSaved] = React.useState(false);
@@ -144,9 +143,9 @@ function App() {
     setIsLoggedAndSaved(false);
   }
 
-  function handleLoginState() {
-    setIsLoggedIn((loggedIn) => !loggedIn);
-  }
+  // function handleLoginState() {
+  //   setIsLoggedIn((loggedIn) => !loggedIn);
+  // }
 
   function handleLogin(values, action) {
     mainApi
@@ -213,11 +212,11 @@ function App() {
   }
 
   function handleSignOut() {
-    setCurrentUser({
-      name: "",
-      _id: "",
-    });
-    closeAllPopups();
+    // setCurrentUser({
+    //   name: "",
+    //   _id: "",
+    // });
+    // closeAllPopups();
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
   }
@@ -250,6 +249,7 @@ function App() {
           .saveArticle(article, keyword)
           .then((res) => {
             if (res.data) {
+              console.log("res.data = ", res.data);
               const articleToSave = {
                 keyword: res.data.keyword,
                 _id: res.data._id,
@@ -310,7 +310,6 @@ function App() {
           isMobile={isMobile}
           deviceChange={handleMobileMenu}
           isMobileNavOpen={isMobileNavOpen}
-          loginState={handleLoginState}
           isLoggedIn={isLoggedIn}
           onHomeClick={handleHomeClick}
           isLoggedAndSaved={isLoggedAndSaved}
