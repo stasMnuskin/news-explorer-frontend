@@ -4,7 +4,7 @@ const mainUrl = "https://api.stasnews.students.nomoreparties.sbs";
 class MainApi {
   constructor(baseUrl, headers) {
     this._baseUrl = baseUrl;
-    this._headers = headers;
+    this.headers = headers;
     this.costumeFetch = this.costumeFetch.bind(this);
   }
 
@@ -61,7 +61,7 @@ class MainApi {
 
   getUserInfo() {
     return this.costumeFetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify(),
     }).then((res) => {
       return res;
@@ -71,14 +71,14 @@ class MainApi {
   getArticles() {
     return this.costumeFetch(`${this._baseUrl}/articles`, {
       method: "GET",
-      headers: this._headers,
+      headers: this.headers,
     });
   }
 
   saveArticle(article, key) {
     return this.costumeFetch(`${this._baseUrl}/articles`, {
       method: "POST",
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify({
         keyword: key,
         image: article.urlToImage,
@@ -93,7 +93,7 @@ class MainApi {
 
   deleteArticle(articleId) {
     return this.costumeFetch(`${this._baseUrl}/articles/${articleId}`, {
-      headers: this._headers,
+      headers: this.headers,
       method: "DELETE",
     });
   }

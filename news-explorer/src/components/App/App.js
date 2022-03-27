@@ -36,7 +36,7 @@ function App() {
   //update headers
   React.useEffect(() => {
     const newToken = localStorage.getItem("jwt");
-    mainApi._headers = {
+    mainApi.headers = {
       authorization: `Bearer ${newToken}`,
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -54,6 +54,8 @@ function App() {
           });
           setIsLoggedIn(true);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     }
   }, [token]);
@@ -249,7 +251,7 @@ function App() {
           .saveArticle(article, keyword)
           .then((res) => {
             if (res.data) {
-              console.log("res.data = ", res.data);
+              // console.log("res.data = ", res.data);
               const articleToSave = {
                 keyword: res.data.keyword,
                 _id: res.data._id,
@@ -276,6 +278,8 @@ function App() {
           setLikedArticles(
             likedArticles.filter((item) => item._id !== articleId)
           );
+        }).catch((err) => {
+          console.log(err);
         })
       : console.log("Cant Delete The Card");
   }

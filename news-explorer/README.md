@@ -16,7 +16,7 @@ Run the project with npm run start.
 Enjoy:) 
 
 * a link to the website that hosts this API:
-
+# wii work ONLY after merging stage-3 to 'main'
 www.stasnews.students.nomoreparties.sbs
 
 
