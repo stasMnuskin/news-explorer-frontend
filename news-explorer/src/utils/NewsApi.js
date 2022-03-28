@@ -34,7 +34,6 @@ const newsApi = new NewsApi({
   headers: {
     authorization: `Bearer ${localStorage.jwt}`,
     "Content-Type": "application/json",
-    // "Access-Control-Allow-Origin": "*"
   },
 });
 
