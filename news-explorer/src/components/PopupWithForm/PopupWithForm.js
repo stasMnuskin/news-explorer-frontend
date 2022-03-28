@@ -11,28 +11,10 @@ export default function PopupWithForm({
   buttonText,
   link,
   onSwitch,
-  onLogin,
-  isLoggedIn,
-  onSignup,
+  isSuccess,
+  isServerError,
+  isValid,
 }) {
-  const [isServerError, setIsServerError] = React.useState(false);
-
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    setIsServerError((error) => !error);
-    setTimeout(() => {
-      setIsServerError(false);
-    }, 5000);
-
-    if (!isLoggedIn) {
-      onLogin();
-
-      // onClose();
-    } else {
-      onSignup();
-    }
-  }
-
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
       <div className="modal__container">
@@ -40,14 +22,11 @@ export default function PopupWithForm({
           onClick={onClose}
           aria-label="close"
           type="button"
-          className="modal__close-button"
+          className={`modal__close-button ${
+            isSuccess && "modal__close-button_mode_success"
+          }`}
         ></button>
-        <form
-          onSubmit={onSubmit}
-          name={name}
-          action="#"
-          className="modal__form"
-        >
+        <form onSubmit={onSubmit} name={name} className="modal__form">
           <h2 className="modal__title">{title}</h2>
           {children}
           {isServerError ? (
@@ -58,10 +37,10 @@ export default function PopupWithForm({
             ""
           )}
           <button
-            onClick={handleSubmit}
+            disabled={isValid ? false : true}
             type="submit"
             className={`modal__submit-button ${
-              isServerError ? "modal__submit-button_active" : ""
+              isValid ? "modal__submit-button_active" : ""
             }`}
           >
             {buttonText}

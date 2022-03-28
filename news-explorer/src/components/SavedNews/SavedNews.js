@@ -1,13 +1,14 @@
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-function SavedNews({ isLoggedIn, searchedArticles }) {
+function SavedNews({ onDelete, onSave, isLoggedIn, articles, likedArticles }) {
   return (
-    <>
-      <NewsCardList
-        isLoggedIn={isLoggedIn}
-        searchedArticles={searchedArticles}
-      ></NewsCardList>
-    </>
+    <NewsCardList
+      onDelete={onDelete}
+      likedArticles={likedArticles}
+      isLoggedIn={isLoggedIn}
+      // articles={articles}
+      onSave={onSave}
+    ></NewsCardList>
   );
 }
 

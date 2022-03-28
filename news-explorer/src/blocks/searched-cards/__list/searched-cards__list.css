@@ -9,13 +9,14 @@
   grid-gap: 16px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .searched-cards__list {
     grid-gap: 8px;
+    margin-bottom: 32px;
   }
 }
 
-@media screen and (max-width: 735px) {
+@media screen and (max-width: 760px) {
   .searched-cards__list {
     display: block;
     /* max-width: 83.4%; */

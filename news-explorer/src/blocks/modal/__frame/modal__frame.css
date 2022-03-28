@@ -10,10 +10,9 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .modal__frame {
     width: 320px;
-    margin-top: -230px;
     padding: 43px 16px;
 } 
 }

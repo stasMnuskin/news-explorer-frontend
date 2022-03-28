@@ -6,10 +6,14 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SearchForm from "../SearchForm/SearchForm";
 
 function Header({
+  likedArticles,
+  onSearch,
+  currentUser,
+  onSignOut,
+  setToken,
   isLoggedIn,
   onHomeClick,
   isLoggedAndSaved,
-  loginState,
   setIsPreloaderOpen,
   openLoginPopup,
   openSignupPopup,
@@ -18,7 +22,8 @@ function Header({
   deviceChange,
   isMobileNavOpen,
   onClose,
-  onLogin
+  onLogin,
+  articles,
 }) {
   const location = useLocation();
 
@@ -33,7 +38,7 @@ function Header({
             onClick={onHomeClick}
             className={`header__btn-txt ${
               location.pathname === "/saved-news"
-                ? "header__btn-txt_mode_news"
+                ? `header__btn-txt_mode_news${isMobileNavOpen ? "-mobile" : ""}`
                 : ""
             }`}
           >
@@ -53,9 +58,13 @@ function Header({
             />
           ) : (
             <Navigation
+              currentUser={currentUser}
+              onSignOut={onSignOut}
+              setToken={setToken}
+              onLogin={onLogin}
+              isMobileNavOpen={isMobileNavOpen}
               isLoggedIn={isLoggedIn}
               isLoggedAndSaved={isLoggedAndSaved}
-              loginState={loginState}
               openLoginPopup={openLoginPopup}
               openSignupPopup={openSignupPopup}
               handleOpenForm={handleOpenForm}
@@ -63,11 +72,24 @@ function Header({
             ></Navigation>
           )}
         </div>
-        <MobileNav handleOpenForm={handleOpenForm} isMobileNavOpen={isMobileNavOpen}  onLogin={onLogin} />
+        <MobileNav
+          handleOpenForm={handleOpenForm}
+          isMobileNavOpen={isMobileNavOpen}
+          openLoginPopup={openLoginPopup}
+        />
         {location.pathname === "/" && (
-          <SearchForm setIsPreloaderOpen={setIsPreloaderOpen} />
+          <SearchForm
+            setIsPreloaderOpen={setIsPreloaderOpen}
+            onSearch={onSearch}
+          />
         )}
-        {location.pathname === "/saved-news" && <SavedNewsHeader />}
+        {location.pathname === "/saved-news" && (
+          <SavedNewsHeader
+            likedArticles={likedArticles}
+            currentUser={currentUser}
+            articles={articles}
+          />
+        )}
       </header>
     </>
   );

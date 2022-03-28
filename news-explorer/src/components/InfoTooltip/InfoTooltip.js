@@ -1,4 +1,4 @@
-function InfoTooltip({ isOpen, onClose, handleOpenLoginPopup }) {
+function InfoTooltip({ isOpen, onClose, handleLogin }) {
   return (
     <div className={`modal modal_type_info ${isOpen ? "modal_open" : ""}`}>
       <div className="modal__frame">
@@ -12,7 +12,7 @@ function InfoTooltip({ isOpen, onClose, handleOpenLoginPopup }) {
         <button
           className="modal__link-button"
           aria-label="link"
-          onClick={handleOpenLoginPopup}
+          onClick={handleLogin}
         >
           Sign in
         </button>

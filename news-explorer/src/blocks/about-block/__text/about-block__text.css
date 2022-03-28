@@ -12,10 +12,10 @@
   margin-top: 40px;
 }
 
-@media screen and (max-width: 768px) {
-  .about-block__text {
+@media screen and (max-width: 1024px) {
+  /* .about-block__text {
     margin: 30px 16px 0;
-  }
+  } */
 
   .about-block__text:last-of-type {
     margin-top: 30px;
