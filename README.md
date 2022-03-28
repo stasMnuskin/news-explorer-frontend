@@ -16,7 +16,7 @@ Run the project with npm run start.
 Enjoy:) 
 
 # a link to the website that hosts this API: 
-# The search will work only locally!!!!!
+
 www.stasnews.students.nomoreparties.sbs
 
 
