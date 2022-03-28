@@ -23,7 +23,7 @@
   }  
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 680px) {
   .footer-block__link {
     width: 200px;
     text-align: left;

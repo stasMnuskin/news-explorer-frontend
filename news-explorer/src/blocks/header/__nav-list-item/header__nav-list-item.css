@@ -1,0 +1,10 @@
+.header__nav-list-item {
+  display: flex;
+  align-self: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .header__nav-list-item {
+    margin-top: -2px;
+  }  
+}

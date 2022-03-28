@@ -2,11 +2,11 @@ import Navigation from "../Navigation/Navigation";
 
 function MobileNav({
   isMobileNavOpen,
-  onLogin,
+  openLoginPopup,
   isLoggedIn,
   handleOpenForm,
   loginState,
-  isMobile
+  isMobile,
 }) {
   return (
     <div
@@ -16,7 +16,7 @@ function MobileNav({
     >
       <div className="header__mobile-container">
         <Navigation
-          onLogin={onLogin}
+          openLoginPopup={openLoginPopup}
           isLoggedIn={isLoggedIn}
           handleOpenForm={handleOpenForm}
           loginState={loginState}

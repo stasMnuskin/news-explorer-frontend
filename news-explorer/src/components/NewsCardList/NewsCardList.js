@@ -1,10 +1,27 @@
 import NewsCard from "../NewsCard/NewsCard";
 import { useLocation } from "react-router-dom";
+import React from "react";
 
-function NewsCardList({ searchedArticles, isLoggedIn }) {
+function NewsCardList({
+  likedArticles,
+  articles,
+  isLoggedIn,
+  onSave,
+  onDelete,
+}) {
+  
+  const [counter, setCounter] = React.useState(3);
+  const [moreArticles, setMoreArticles] = React.useState(true);
   const location = useLocation();
 
-  function handleButton() {}
+  function handleButton() {
+    if (articles.length - counter <= 3) {
+      setMoreArticles(false);
+      setCounter(articles.length);
+    } else {
+      setCounter(counter + 3);
+    }
+  }
 
   return (
     <div
@@ -17,38 +34,36 @@ function NewsCardList({ searchedArticles, isLoggedIn }) {
           <h2 className="searched-cards__title">Search results</h2>
         )}
         <ul className="searched-cards__list">
-          {location.pathname === "/"
-            ? searchedArticles
-                .slice(0, 3)
-                .map((item) => (
-                  <NewsCard
-                    isLoggedIn={isLoggedIn}
-                    key={item._id}
-                    _id={item._id}
-                    topic={item.topic}
-                    image={item.image}
-                    date={item.date}
-                    title={item.title}
-                    text={item.text}
-                    source={item.source}
-                  ></NewsCard>
-                ))
-            : searchedArticles.map((item) => (
+          {location.pathname === "/" &&
+            articles
+              .slice(0, counter)
+              .map((item, i) => (
                 <NewsCard
+                  likedArticles={likedArticles}
+                  articles={articles}
+                  onSave={onSave}
+                  onDelete={onDelete}
                   isLoggedIn={isLoggedIn}
-                  key={item._id}
-                  _id={item._id}
-                  topic={item.topic}
-                  image={item.image}
-                  date={item.date}
-                  title={item.title}
-                  text={item.text}
-                  source={item.source}
+                  key={i}
+                  searchedArticle={item}
                 ></NewsCard>
               ))}
+          {location.pathname === "/saved-news" &&
+            likedArticles.map((item, i) => (
+              <NewsCard
+                likedArticles={likedArticles}
+                articles={articles}
+                onSave={onSave}
+                onDelete={onDelete}
+                isLoggedIn={isLoggedIn}
+                key={i}
+                searchedArticle={item}
+              ></NewsCard>
+            ))}
         </ul>
-        {location.pathname === "/" && (
+        {location.pathname === "/" && moreArticles && (
           <button
+            type="button"
             className="searched-cards__button"
             aria-label="show-more"
             onClick={handleButton}

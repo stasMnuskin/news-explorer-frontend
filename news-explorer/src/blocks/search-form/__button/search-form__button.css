@@ -33,7 +33,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .search-form__button {
     width: 288px;
     justify-content: center;

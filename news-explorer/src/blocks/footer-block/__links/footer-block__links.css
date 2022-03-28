@@ -19,7 +19,7 @@
   }
 } */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 680px) {
   .footer-block__links {
     padding: 0;
     flex-direction: column;

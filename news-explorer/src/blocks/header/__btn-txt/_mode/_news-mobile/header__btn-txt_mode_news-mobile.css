@@ -1,0 +1,9 @@
+.header__btn-txt_mode_news- {
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 600px) {
+  .header__btn-txt_mode_news {
+    padding-bottom: 16px;
+  }
+}

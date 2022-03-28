@@ -3,11 +3,14 @@ import About from "../About/About";
 import { useLocation } from "react-router-dom";
 
 function Main({
+  onDelete,
+  onSave,
   isPreloaderOpen,
-  searchedArticles,
+  articles,
   setIsSearching,
   isSearching,
   isLoggedIn,
+  likedArticles
 }) {
   const location = useLocation();
 
@@ -15,7 +18,10 @@ function Main({
     <>
       {isPreloaderOpen && (
         <Preloader
-          searchedArticles={searchedArticles}
+          onDelete={onDelete}
+          onSave={onSave}
+          articles={articles}
+          likedArticles={likedArticles}
           setIsSearching={setIsSearching}
           isSearching={isSearching}
           isLoggedIn={isLoggedIn}

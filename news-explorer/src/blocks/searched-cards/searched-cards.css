@@ -10,7 +10,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
   .searched-cards {
     width: calc(100% - 16px * 2);
   }
