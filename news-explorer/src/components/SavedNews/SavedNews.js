@@ -6,7 +6,6 @@ function SavedNews({ onDelete, onSave, isLoggedIn, articles, likedArticles }) {
       onDelete={onDelete}
       likedArticles={likedArticles}
       isLoggedIn={isLoggedIn}
-      // articles={articles}
       onSave={onSave}
     ></NewsCardList>
   );
