@@ -15,7 +15,8 @@ After downloading from the repo, deploy and install with npm install.
 Run the project with npm run start.
 Enjoy:) 
 
-* a link to the website that hosts this API:
+# a link to the website that hosts this API: 
+
 www.stasnews.students.nomoreparties.sbs
 
 
