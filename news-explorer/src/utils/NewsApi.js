@@ -30,7 +30,8 @@ class NewsApi {
 
 const newsApi = new NewsApi({
   apiKey: "66672a82201f4feca0324014dd30c0db",
-  baseUrl: "https://newsapi.org/v2/everything",
+  baseUrl: "https://nomoreparties.co/news/v2/everything",
+  // baseUrl: "https://newsapi.org/v2/everything",
   headers: {
     authorization: `Bearer ${localStorage.jwt}`,
     "Content-Type": "application/json",
