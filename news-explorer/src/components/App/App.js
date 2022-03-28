@@ -46,17 +46,20 @@ function App() {
   //user info
   React.useEffect(() => {
     if (token) {
-      mainApi.getUserInfo().then((res) => {
-        if (res) {
-          setCurrentUser({
-            name: res.data.name,
-            _id: res.data._id,
-          });
-          setIsLoggedIn(true);
-        }
-      }).catch((err) => {
-        console.log(err);
-      });
+      mainApi
+        .getUserInfo()
+        .then((res) => {
+          if (res) {
+            setCurrentUser({
+              name: res.data.name,
+              _id: res.data._id,
+            });
+            setIsLoggedIn(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [token]);
 
@@ -145,10 +148,6 @@ function App() {
     setIsLoggedAndSaved(false);
   }
 
-  // function handleLoginState() {
-  //   setIsLoggedIn((loggedIn) => !loggedIn);
-  // }
-
   function handleLogin(values, action) {
     mainApi
       .logIn(values)
@@ -214,11 +213,6 @@ function App() {
   }
 
   function handleSignOut() {
-    // setCurrentUser({
-    //   name: "",
-    //   _id: "",
-    // });
-    // closeAllPopups();
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
   }
@@ -251,7 +245,6 @@ function App() {
           .saveArticle(article, keyword)
           .then((res) => {
             if (res.data) {
-              // console.log("res.data = ", res.data);
               const articleToSave = {
                 keyword: res.data.keyword,
                 _id: res.data._id,
@@ -273,14 +266,16 @@ function App() {
 
   function handleDelete(articleId) {
     isLoggedIn
-      ? mainApi.deleteArticle(articleId).then((res) => {
-          // console.log("delete res = ", res);
-          setLikedArticles(
-            likedArticles.filter((item) => item._id !== articleId)
-          );
-        }).catch((err) => {
-          console.log(err);
-        })
+      ? mainApi
+          .deleteArticle(articleId)
+          .then((res) => {
+            setLikedArticles(
+              likedArticles.filter((item) => item._id !== articleId)
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          })
       : console.log("Cant Delete The Card");
   }
 
